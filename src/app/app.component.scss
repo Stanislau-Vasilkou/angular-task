@@ -1,0 +1,10 @@
+.wrapper {
+  //background-color: deepskyblue;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.wrapper > * {
+  width: 50%;
+}
+

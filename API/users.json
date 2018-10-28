@@ -1,0 +1,38 @@
+[
+  {
+      "id": 1,
+      "name": "Sergey",
+      "password": "myPasswordSergey",
+      "birthday": "2018-09-20T20:00:26.188Z",
+      "firtstLoginDate": "2018-09-20T20:00:26.188Z",
+      "notifyDate": "2018-09-20T20:00:26.188Z",
+      "info": "no info"
+  },
+  {
+      "id": 2,
+      "name": "Andrey",
+      "password": "myPasswordAndrey",
+      "birthday": "2018-09-20T20:00:26.188Z",
+      "firtstLoginDate": "2018-09-20T20:00:26.188Z",
+      "notifyDate": "2018-09-20T20:00:26.188Z",
+      "info": "no info"
+  },
+  {
+      "id": 3,
+      "name": "Ivan",
+      "password": "myPasswordIvan",
+      "birthday": "2018-09-20T20:00:26.188Z",
+      "firtstLoginDate": "2018-09-20T20:00:26.188Z",
+      "notifyDate": "2018-09-20T20:00:26.188Z",
+      "info": "no info"
+  },
+      {
+      "id": 4,
+      "name": "Vladimir",
+      "password": "myPasswordVladimir",
+      "birthday": "2018-09-20T20:00:26.188Z",
+      "firtstLoginDate": "2018-09-20T20:00:26.188Z",
+      "notifyDate": "2018-09-20T20:00:26.188Z",
+      "info": "no info"
+  }
+]

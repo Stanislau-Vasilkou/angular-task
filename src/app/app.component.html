@@ -1,20 +1,51 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="wrap">
+  <form [formGroup]="userForm">
+    <div class="wrapper">
+      <mat-toolbar color="primary">
+        <span>USER FORM</span>
+      </mat-toolbar>
+      <mat-form-field appearance="outline">
+        <mat-label>name</mat-label>
+        <input matInput type="text" id="name" formControlName="name" placeholder="{{hints.name}}" required>
+        <mat-hint align="end">{{hints.name}}</mat-hint>
+        <mat-error *ngIf="isControlInvalid('name')">{{getErrMsg('name')}}</mat-error>
+    </mat-form-field>
+      <mat-form-field appearance="outline">
+         <mat-label>age</mat-label>
+         <input matInput type="text"  id="age" formControlName="age"
+                placeholder="{{hints.age}}" required>
+        <mat-hint align="end">{{hints.age}}</mat-hint>
+        <mat-error *ngIf="isControlInvalid('age')">{{getErrMsg('age')}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>birthday</mat-label>
+        <input matInput type="text" id="birthday" formControlName="birthday" placeholder="{{hints.dates}}" required>
+        <mat-hint align="end">{{hints.dates}}</mat-hint>
+        <mat-error *ngIf="isControlInvalid('birthday')">{{getErrMsg('birthday')}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>login date</mat-label>
+        <input matInput type="text"  id="loginDate" formControlName="loginDate" placeholder="{{hints.dates}}" required>
+        <mat-hint align="end">{{hints.dates}}</mat-hint>
+        <mat-error *ngIf="isControlInvalid('loginDate')">{{getErrMsg('loginDate')}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>date of first notification</mat-label>
+        <input matInput type="text" id="firstNotificationDate"
+               formControlName="firstNotificationDate" placeholder="{{hints.dates}}" required>
+        <mat-hint align="end">{{hints.dates}}</mat-hint>
+        <mat-error *ngIf="isControlInvalid('firstNotificationDate')">{{getErrMsg('firstNotificationDate')}}</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="userForm.invalid" (click)="showInfo">SUBMIT</button>
+    </div>
+  </form>
+  <app-user-details></app-user-details>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
+<div *ngIf="userForm.valid">
+    <p><span>User name: {{userForm.controls.name.value}}</span></p>
+    <p><span>Age: {{userForm.controls.age.value}}</span></p>
+    <p><span>Birthday: {{userForm.controls.birthday.value}}</span></p>
+    <p><span>Date of login: {{userForm.controls.loginDate.value}}</span></p>
+    <p><span>Date of notify: {{userForm.controls.firstNotificationDate.value}}</span></p>
+</div>
