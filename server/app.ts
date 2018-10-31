@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const app = express();
 const port = 3000;
-let users = JSON.parse(fs.readFileSync('./API/users.json'), 'utf-8');
+let users = JSON.parse(fs.readFileSync('./server/users.json'), 'utf-8');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
