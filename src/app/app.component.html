@@ -1,15 +1,18 @@
-<div class="wrap">
+<div class="container">
   <form [formGroup]="userForm">
-    <div class="wrapper">
-      <mat-toolbar color="primary">
-        <span>USER FORM</span>
-      </mat-toolbar>
+    <div class="content-wrapper">
+      <div class="title"><h1>USER FORM</h1></div>
+
       <mat-form-field appearance="outline">
         <mat-label>name</mat-label>
         <input matInput type="text" id="name" formControlName="name" placeholder="{{hints.name}}" required>
         <mat-hint align="end">{{hints.name}}</mat-hint>
         <mat-error *ngIf="isControlInvalid('name')">{{getErrMsg('name')}}</mat-error>
+        <div *ngIf="userForm.controls.name.pending">
+          <div class="input-check">Checking data...{{timer()}}</div>
+        </div>
     </mat-form-field>
+
       <mat-form-field appearance="outline">
          <mat-label>age</mat-label>
          <input matInput type="text"  id="age" formControlName="age"
@@ -17,18 +20,21 @@
         <mat-hint align="end">{{hints.age}}</mat-hint>
         <mat-error *ngIf="isControlInvalid('age')">{{getErrMsg('age')}}</mat-error>
       </mat-form-field>
+
       <mat-form-field appearance="outline">
         <mat-label>birthday</mat-label>
         <input matInput type="text" id="birthday" formControlName="birthday" placeholder="{{hints.dates}}" required>
         <mat-hint align="end">{{hints.dates}}</mat-hint>
         <mat-error *ngIf="isControlInvalid('birthday')">{{getErrMsg('birthday')}}</mat-error>
       </mat-form-field>
+
       <mat-form-field appearance="outline">
         <mat-label>login date</mat-label>
         <input matInput type="text"  id="loginDate" formControlName="loginDate" placeholder="{{hints.dates}}" required>
         <mat-hint align="end">{{hints.dates}}</mat-hint>
         <mat-error *ngIf="isControlInvalid('loginDate')">{{getErrMsg('loginDate')}}</mat-error>
       </mat-form-field>
+
       <mat-form-field appearance="outline">
         <mat-label>date of first notification</mat-label>
         <input matInput type="text" id="firstNotificationDate"
@@ -36,16 +42,22 @@
         <mat-hint align="end">{{hints.dates}}</mat-hint>
         <mat-error *ngIf="isControlInvalid('firstNotificationDate')">{{getErrMsg('firstNotificationDate')}}</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" [disabled]="userForm.invalid" (click)="showInfo">SUBMIT</button>
+
+      <button mat-raised-button color="primary" [disabled]="userForm.invalid" (click)="submitted = true">SUBMIT
+      </button>
     </div>
   </form>
-  <app-user-details></app-user-details>
+
+  <div *ngIf="submitted" class="info-wrapper">
+    <div class="user-info">
+      <h1>User data:</h1>
+      <p><span>User name: {{userForm.controls.name.value}}</span></p>
+      <p><span>Age: {{userForm.controls.age.value}}</span></p>
+      <p><span>Birthday: {{userForm.controls.birthday.value}}</span></p>
+      <p><span>Date of login: {{userForm.controls.loginDate.value}}</span></p>
+      <p><span>Date of notify: {{userForm.controls.firstNotificationDate.value}}</span></p>
+    </div>
+  </div>
 </div>
 
-<div *ngIf="userForm.valid">
-    <p><span>User name: {{userForm.controls.name.value}}</span></p>
-    <p><span>Age: {{userForm.controls.age.value}}</span></p>
-    <p><span>Birthday: {{userForm.controls.birthday.value}}</span></p>
-    <p><span>Date of login: {{userForm.controls.loginDate.value}}</span></p>
-    <p><span>Date of notify: {{userForm.controls.firstNotificationDate.value}}</span></p>
-</div>
+

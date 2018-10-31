@@ -1,13 +1,17 @@
 import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
 import * as moment from "moment";
+import {dateFormats} from "./dateFormaValidator";
+
+const foundingDate = '01.10.2018';
 
 
 export function loginDateValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors => {
-    const startDate = "01.01.2018";
-    const systemDate = +moment(startDate, ["DD.MM.YYYY"], true).format('x');
-    const value = control.value;
-    const currentDate = +moment(value, ["YYYY/MM/DD", "DD MMMM YYYY", "DD-MMM-YY"], true).format('x');
-    return (currentDate < systemDate) ? {message: "You couldn't register so early"} : null;
+    const systemDate = +moment(foundingDate, ["DD.MM.YYYY"], true);
+    const inputedValue = control.value;
+    const inputedDate = +moment(inputedValue, dateFormats, true);
+    return (inputedDate < systemDate) ? {message: "You couldn't register so early (service works from " + foundingDate + ")"}
+           : (inputedDate > +moment()) ? {message: "Seriously? Are you from future?"}
+           : null;
   }
 }

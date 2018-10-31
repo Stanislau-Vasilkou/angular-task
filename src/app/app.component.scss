@@ -1,10 +1,39 @@
-.wrapper {
-  //background-color: deepskyblue;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-.wrapper > * {
-  width: 50%;
+h1 {
+  text-align: center;
 }
 
+.title {
+  background-color: #673ab7;
+  text-align: center;
+  color: white;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper > *,.user-info {
+  align-self: center;
+  max-width: 80vh;
+  min-width: 500px;
+
+}
+
+.info-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.user-info {
+  border-radius: 5px;
+  background-color: #673ab7;
+  color: white;
+  padding-left: 5px;
+}
+
+.input-check {
+  font-size: 0.7em;
+  color: grey;
+}
