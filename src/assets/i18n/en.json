@@ -1,0 +1,35 @@
+{
+  "form":{
+  "age":"age",
+  "birthday":"birhday",
+  "firstNotificationDate":"notification date",
+  "loginDate":"login date",
+  "name":"name",
+  "title":"user form",
+  "password":"Password"
+  },
+  "hint":{
+    "age":"Range from 18 to 65",
+    "name":"One or two words.Use only latin symbol",
+    "date":"Date formats: 2018/10/18 or 18 october 2018 or 10-oct-18",
+    "password":"Password length must be over 8 symbols"
+  },
+  "validatorErrors":{
+    "fromFuture":"Seriously? Are you from future?",
+    "isSmall":"You are under 18",
+    "isOld":"You are over 65",
+    "isNotNumber":"Inputted value is not a number",
+    "isNotInteger":"Inputted value is not a integer",
+    "isNotInRange":"Age must be in range from 18 to 65",
+    "notCapital":"First letter of each word must be a capital",
+    "notLower":"All letters after first must be a lower",
+    "wrongLength":"Name must consists of one or two words separated with space",
+    "wrongDateFormat":"Wrong date format. Use correct date format",
+    "wrongLoginDate":"You couldn't registered before service was founded",
+    "wrongNotifyDate":"Date of notification can't be earlier than current",
+    "forbiddenSymbols":"Name must consist of latin symbols only",
+    "existName":"This name has already been registered",
+    "required":"Please, fill the field",
+    "minlength":"Password length less than 8 symbols"
+  }
+}
