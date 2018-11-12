@@ -16,7 +16,7 @@
   },
   "validatorErrors":{
     "fromFuture":"Seriously? Are you from future?",
-    "isSmall":"You are under 18",
+    "isYoung":"You are under 18",
     "isOld":"You are over 65",
     "isNotNumber":"Inputted value is not a number",
     "isNotInteger":"Inputted value is not a integer",
