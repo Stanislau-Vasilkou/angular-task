@@ -1,6 +1,6 @@
-+ul clone the repo
-+ul npm install
-+ul npm start
++ clone the repo
++ npm install
++ npm start
 # Form
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2.
