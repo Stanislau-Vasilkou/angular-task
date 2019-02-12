@@ -1,4 +1,6 @@
-<<<<<<< HEAD
+clone the repo
+npm install
+npm start
 # Form
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2.
@@ -27,5 +29,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 =======
-# training
->>>>>>> e618082c6a97a8e2e99d89e93808d3e78d60b693
+
