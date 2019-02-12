@@ -1,22 +1,20 @@
 import {AbstractControl, AsyncValidatorFn, ValidationErrors} from "@angular/forms";
 import {Observable, of} from "rxjs";
-import {catchError, delay, map} from "rxjs/operators";
+import {catchError, delay, filter, map, tap} from "rxjs/operators";
+import {UserService} from "../services/user.service";
+import {User} from "../user";
 
 
-const users = ["Ivan", "Stan", "Anna", "Gorge"];
-
-function existingName(name: string): Observable<boolean> {
-  const exist = users.indexOf(name) >= 0;
-  return of(exist).pipe(delay(3000));
-}
-
-export function asyncNameValidator(): AsyncValidatorFn {
+export function asyncNameValidator(userService: UserService): AsyncValidatorFn {
   return ((control: AbstractControl):  Observable<ValidationErrors | null> => {
-    return existingName(control.value).pipe(
-      map((exist) => (exist ? { message: "This name is already exist" } : null)),
-      catchError(() => null));
+      return userService.getAllUsers().pipe(
+        map((users: User[]) => {
+          if(users.filter((user) => user.name === control.value).length === 1) {
+            return { existName: true }
+          } else {
+            return null;
+          }
+        })
+      )
   });
 }
-
-
-

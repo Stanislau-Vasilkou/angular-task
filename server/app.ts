@@ -1,67 +1,98 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const fs = require('fs');
+const cookieParser = require('cookie-parser');
+const authCheck = require('./lib/check-auth');
+const session = require('express-session');
+let users = require('./users.json');
+const delay = require("express-delay");
 
 const app = express();
+const PATH = '/users';
 const port = 3000;
-let users = JSON.parse(fs.readFileSync('./server/users.json'), 'utf-8');
+const delayTime = 500;
+let isAutorized = false;
 
+app.use(delay(delayTime));
 app.use(bodyParser.json());
+// app.set('trust proxy', 1);
+// app.use(session({
+//   secret: 'skibidi',
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: { secure: true }
+// }));
+// app.use(authCheck);
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(function(req, res, next) {
+app.use(cookieParser());
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Authorization");
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   next();
 });
 
-app.get('/users', (req, res) => res.send(users));
+app.get(PATH, (req, res) => res.send(users));
 
-app.get('/users/:id', (req, res) =>	{
+app.get(`${PATH}/:id`, (req, res) =>	{
 	let reqId = +req.params.id;
 	if(checkId(reqId)) {
 		let user = checkId(reqId);
 		res.send(user);
 	} else {
-	res.send(`user id#${reqId} is not found`);
+	  res.sendStatus(404);
 	}
-})
+});
 
-app.post('/users/add', (req, res) => {
+app.post(`${PATH}/add`, (req, res) => {
 	let lastId = users[users.length - 1].id + 1; 
 	let user = {
 		id: lastId,
 		name: null,
 		password: null,
 		birthDay: null,
-		firtstLogin: null,
+		firstLogin: null,
 		notification: null,
 		information: null
-	}
+	};
 	setValues(req.body, user);
 	users.push(user);
-	res.send(`user id#${lastId} was added`);
-})
+	res.sendStatus(201);
+});
 
-app.put('/users/:id', (req, res) => {
+app.post(`${PATH}/login`, (req, res) => {
+  const pass = req.body.password;
+  const name = req.body.name;
+  const user = users.find(user => user.name === name);
+  if (user && user.password === pass) {
+    res.send(user);
+  } else  if (user && user.password !== pass){
+    res.send(`incorrect password`);
+  } else {
+    res.send(401);
+  }
+});
+
+
+app.put(`${PATH}/:id`, (req, res) => {
 	let reqId = +req.params.id;
 	if(checkId(reqId)) {
 		let user = checkId(reqId);
 		setValues(req.body, user);
-		res.send(`user id#${reqId} was updated`);
+		res.send(users[reqId]);
 	} else {
-		res.send(`user id#${reqId} is not found`);
+		res.sendStatus(404);
 	}
-})
+});
 
-app.delete('/users/:id', (req, res) =>  {
+app.delete(`${PATH}/:id`, (req, res) =>  {
 	let reqId = +req.params.id;
 	if(checkId(reqId)) {
 		users = users.filter((user) => user.id !== reqId);
-		res.send(`user id#${reqId} was deleted`);
+		res.sendStatus(200);
 	} else {
-	 res.send(`user id#${reqId} is not found`);
+	  res.sendStatus(404);
 	}
-})
+});
 
 function checkId (id) {
 	return users.find((user) => user.id === id);
@@ -72,4 +103,3 @@ function setValues (obj, user) {
 }
 
 app.listen(port, () => console.log(`App running on port ${port}!`));
-

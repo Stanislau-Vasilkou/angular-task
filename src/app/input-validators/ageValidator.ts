@@ -1,7 +1,5 @@
 import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
 
-
-
 export function ageValidator(minAge: number, maxAge: number): ValidatorFn {
   return (control: AbstractControl): ValidationErrors => {
     const dot: string = '.';
@@ -9,9 +7,9 @@ export function ageValidator(minAge: number, maxAge: number): ValidatorFn {
     const isNumeric = isNaN(parseFloat(value)) && isFinite(value);
     const isInteger = Number.isInteger(+value);
 
-    return (isNumeric) ? {message: "Inputted age is not a number"} :
-      (!isInteger ||  value.includes(dot)) ? {message: "Inputted age is not an integer"} :
-        (value > maxAge || value < minAge) ? {message : "Inputted  age is not in range from 18 to 65"} :
+    return (isNumeric) ? {isNotNumber: true} :
+      (!isInteger ||  value.includes(dot)) ? {isNotInteger: true} :
+        (value > maxAge || value < minAge) ? {isNotInRange : true} :
           null;
   };
 }

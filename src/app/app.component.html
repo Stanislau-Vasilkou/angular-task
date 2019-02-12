@@ -1,63 +1,25 @@
-<div class="container">
-  <form [formGroup]="userForm">
-    <div class="content-wrapper">
-      <div class="title"><h1>USER FORM</h1></div>
+<div class="component-container">
 
-      <mat-form-field appearance="outline">
-        <mat-label>name</mat-label>
-        <input matInput type="text" id="name" formControlName="name" placeholder="{{hints.name}}" required>
-        <mat-hint align="end">{{hints.name}}</mat-hint>
-        <mat-error *ngIf="isControlInvalid('name')">{{getErrMsg('name')}}</mat-error>
-        <div *ngIf="userForm.controls.name.pending">
-          <div class="input-check">Checking data...{{timer()}}</div>
-        </div>
-    </mat-form-field>
-
-      <mat-form-field appearance="outline">
-         <mat-label>age</mat-label>
-         <input matInput type="text"  id="age" formControlName="age"
-                placeholder="{{hints.age}}" required>
-        <mat-hint align="end">{{hints.age}}</mat-hint>
-        <mat-error *ngIf="isControlInvalid('age')">{{getErrMsg('age')}}</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>birthday</mat-label>
-        <input matInput type="text" id="birthday" formControlName="birthday" placeholder="{{hints.dates}}" required>
-        <mat-hint align="end">{{hints.dates}}</mat-hint>
-        <mat-error *ngIf="isControlInvalid('birthday')">{{getErrMsg('birthday')}}</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>login date</mat-label>
-        <input matInput type="text"  id="loginDate" formControlName="loginDate" placeholder="{{hints.dates}}" required>
-        <mat-hint align="end">{{hints.dates}}</mat-hint>
-        <mat-error *ngIf="isControlInvalid('loginDate')">{{getErrMsg('loginDate')}}</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>date of first notification</mat-label>
-        <input matInput type="text" id="firstNotificationDate"
-               formControlName="firstNotificationDate" placeholder="{{hints.dates}}" required>
-        <mat-hint align="end">{{hints.dates}}</mat-hint>
-        <mat-error *ngIf="isControlInvalid('firstNotificationDate')">{{getErrMsg('firstNotificationDate')}}</mat-error>
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" [disabled]="userForm.invalid" (click)="submitted = true">SUBMIT
-      </button>
-    </div>
-  </form>
-
-  <div *ngIf="submitted" class="info-wrapper">
-    <div class="user-info">
-      <h1>User data:</h1>
-      <p><span>User name: {{userForm.controls.name.value}}</span></p>
-      <p><span>Age: {{userForm.controls.age.value}}</span></p>
-      <p><span>Birthday: {{userForm.controls.birthday.value}}</span></p>
-      <p><span>Date of login: {{userForm.controls.loginDate.value}}</span></p>
-      <p><span>Date of notify: {{userForm.controls.firstNotificationDate.value}}</span></p>
-    </div>
+  <div class="button-wrapper">
+    <button class="button log-button" mat-raised-button (click)="logout()">Log out</button>
+    <button class="button lang-button" mat-button (click)="localeService.switchLanguage('en')">En
+    </button>
+    <button class="button lang-button" mat-button (click)="localeService.switchLanguage('ru')">Ru
+    </button>
   </div>
 </div>
 
+<!--[disabled]="myStorage.key('authId')"-->
 
+
+<!--<div class="app-menu">-->
+  <!--<nav>-->
+  <!--<ul>-->
+    <!--<li><a routerLink="users" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Users</a></li>-->
+    <!--<li><a routerLink="form-editor" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Form editor</a></li>-->
+    <!--<li><a routerLink="login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Login page</a></li>-->
+    <!--<li><a routerLink="forgot-password" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Forgot password</a></li>-->
+  <!--</ul>-->
+  <!--</nav>-->
+<!--</div>-->
+<router-outlet></router-outlet>

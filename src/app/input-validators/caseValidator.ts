@@ -18,10 +18,10 @@ export function caseValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors => {
     const namesArray = (control.value) ? control.value.split(' ') : null;
     if (namesArray && namesArray.length <= limitOfStrings) {
-      return !isUpperCase(namesArray) ? {message: "First symbol of each word must be a capital letter"} :
-             !isLowerCase(namesArray) ? {message: "All symbols after first must be a lower case letters"} :
+      return !isUpperCase(namesArray) ? {notCapital: true} :
+             !isLowerCase(namesArray) ? {notLower: true} :
              null;
     }
-    return {message: "Inputted data must consist of one or two words"}
+    return {wrongLength: true}
   }
 }

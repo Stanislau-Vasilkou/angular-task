@@ -8,7 +8,7 @@ export function symbolsValidator(): ValidatorFn {
         const symbol = item.charCodeAt(0);
         return (symbol > 64 && symbol < 123 || symbol === 32);
       });
-      return result ?  null : {message: "Inputted data contains forbidden symbols"};
+      return result ?  null : {forbiddenSymbols: true};
     }
   }
 }

@@ -1,0 +1,57 @@
+<div class="component-container">
+  <form [formGroup]="userForm">
+      <mat-form-field appearance="outline">
+        <mat-label>{{'form.name' | translate }}</mat-label>
+        <input matInput type="text" id="name" formControlName="name" placeholder="{{'hint.name' | translate}}"
+               required>
+        <mat-hint align="end">{{'hint.name' | translate}}</mat-hint>
+        <mat-error *ngIf="isInvalid('name')">{{catchError('name') | translate}}</mat-error>
+        <div *ngIf="userForm.controls.name.pending">
+          <div class="input-check">Checking data...</div>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{'form.age' | translate}}</mat-label>
+        <input matInput type="text"  id="age" formControlName="age" placeholder="{{'hint.age' | translate}}" required>
+        <mat-hint align="end">{{'hint.age' | translate}}</mat-hint>
+        <mat-error *ngIf="isInvalid('age')">{{catchError('age') | translate}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{'form.birthday' | translate}}</mat-label>
+        <input matInput type="text" id="birthday" formControlName="birthday"
+               placeholder="{{'hint.date' | translate}}" required>
+        <mat-hint align="end">{{'hint.date' | translate}}</mat-hint>
+        <mat-error *ngIf="isInvalid('birthday')">{{catchError('birthday') | translate}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{'form.loginDate' | translate}}</mat-label>
+        <input matInput type="text"  id="loginDate" formControlName="loginDate"
+               placeholder="{{'hint.date' | translate}}" required>
+        <mat-hint align="end">{{'hint.date' | translate}}</mat-hint>
+        <mat-error *ngIf="isInvalid('loginDate')">{{catchError('loginDate') | translate}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{'form.firstNotificationDate' | translate}}</mat-label>
+        <input matInput type="text" id="firstNotificationDate"
+               formControlName="firstNotificationDate" placeholder="{{'hint.date' | translate}}" required>
+        <mat-hint align="end">{{'hint.date' | translate}}</mat-hint>
+        <mat-error *ngIf="isInvalid('firstNotificationDate')">{{catchError('firstNotificationDate') |
+          translate}}</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" [disabled]="userForm.invalid"
+              (click)="updateUser()">{{'buttons.confirm' | translate}}
+      </button>
+  </form>
+</div>
+
+<div *ngIf="loaded" class="load-mask">
+  <p><span>Sending data to server...</span></p>
+</div>
+
+
+

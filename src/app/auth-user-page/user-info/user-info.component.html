@@ -1,0 +1,33 @@
+<div class="component-container">
+  <form [formGroup]="userInfoForm">
+    <mat-form-field appearance="outline">
+      <mat-label>{{'form.name' | translate }}</mat-label>
+      <input matInput type="text" formControlName="name" readonly>
+        <app-spinner *ngIf="!loaded" class="loader"></app-spinner>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{'form.age' | translate }}</mat-label>
+      <input matInput type="text" formControlName="age" readonly>
+      <app-spinner *ngIf="!loaded" class="loader"></app-spinner>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{'form.birthday' | translate }}</mat-label>
+      <input matInput type="text" formControlName="birthday" readonly>
+      <app-spinner *ngIf="!loaded" class="loader"></app-spinner>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{'form.loginDate' | translate }}</mat-label>
+      <input matInput type="text" formControlName="loginDate" readonly>
+      <app-spinner *ngIf="!loaded" class="loader"></app-spinner>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{'form.firstNotificationDate' | translate }}</mat-label>
+      <input matInput type="text" formControlName="firstNotificationDate" readonly>
+      <app-spinner *ngIf="!loaded" class="loader"></app-spinner>
+    </mat-form-field>
+  </form>
+</div>

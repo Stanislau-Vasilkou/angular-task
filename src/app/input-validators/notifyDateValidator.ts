@@ -6,8 +6,7 @@ import {dateFormats} from "./dateFormaValidator";
 export function notifyDateValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors => {
     const currentDate = +moment();
-    const inputedValue = control.value;
-    return (+moment(inputedValue, dateFormats, true) < currentDate) ? {message: "Date of notification can't be" +
-        " early than current"} : null;
+    const inputtedValue = control.value;
+    return (+moment(inputtedValue, dateFormats, true) < currentDate) ? {wrongNotifyDate: true} : null;
   }
 }

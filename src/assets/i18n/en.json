@@ -31,5 +31,14 @@
     "existName":"This name has already been registered",
     "required":"Please, fill the field",
     "minlength":"Password length less than 8 symbols"
+  },
+  "buttons": {
+    "logIn": "submit",
+    "confirm": "apply changes"
+  },
+  "tabs": {
+    "info": "user info",
+    "edit": "edit data",
+    "lang": "Choose language"
   }
 }

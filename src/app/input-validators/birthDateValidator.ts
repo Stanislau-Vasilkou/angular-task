@@ -10,10 +10,9 @@ export function birthDateValidator(): ValidatorFn {
     const inputedValue = control.value;
     const currentDay = moment();
     const birthday = moment(inputedValue, dateFormats, true);
-    return (currentDay.diff(birthday, 'd') <= 0) ? {message: "Seriously? Are you from future?"}
-           : (currentDay.diff(birthday, 'y') > maxAge)  ? {message: "You are over 65 years of age"}
-           : (currentDay.diff(birthday, 'y') < minAge && currentDay.diff(birthday, 'd') > 0) ? {message: "You are" +
-            " under 18 years of age"}
+    return (currentDay.diff(birthday, 'd') <= 0) ? {fromFuture: true}
+           : (currentDay.diff(birthday, 'y') > maxAge)  ? {isOld: true}
+           : (currentDay.diff(birthday, 'y') < minAge && currentDay.diff(birthday, 'd') > 0) ? {isYoung: true}
            : null;
   }
 }

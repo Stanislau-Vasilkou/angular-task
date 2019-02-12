@@ -1,0 +1,12 @@
+<div class="component-container">
+  <mat-tab-group class="app-tabs">
+
+    <mat-tab label="{{'tabs.info' | translate}}">
+      <app-user-info [user]="user" [loaded]="loaded"></app-user-info>
+    </mat-tab>
+
+    <mat-tab label="{{'tabs.edit' | translate}}">
+      <app-form-editor [user]="user" (updateUserEvent)="user = $event"></app-form-editor>
+    </mat-tab>
+  </mat-tab-group>
+</div>

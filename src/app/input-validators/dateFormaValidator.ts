@@ -5,7 +5,7 @@ export const dateFormats = ["YYYY/MM/DD", "DD MMMM YYYY", "DD-MMM-YY"];
 
 export function dateFormatValidator(): ValidatorFn {
   return  (control: AbstractControl): ValidationErrors => {
-    const inputedValue = control.value;
-    return !moment(inputedValue, dateFormats, true ).isValid() ? {message: "wrong date format"} : null;
+    const inputtedValue = control.value;
+    return !moment(inputtedValue, dateFormats, true ).isValid() ? {wrongDateFormat: true} : null;
   }
 }
